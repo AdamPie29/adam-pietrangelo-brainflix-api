@@ -1,19 +1,15 @@
 const router = require('./routes/videos');
 const express = require('express');
+const videosRoutes = require('./routes/videos.js');
+const app = express();
+const cors = require("cors");
 
-const app = require('express')();
-
-
-app.use(express.static('public'));
+app.use(cors());
 app.use(express.json());
 
-app.use((request, response, next)=> {
-    next();
-});
+app.use("/static", express.static("public"));
 
-const videosRoutes = require('./routes/videos');
-
-app.use("/videos", videosRoutes);
+app.use("/", videosRoutes);
 
 app.listen(8080, ()=> {
     console.log("listening on 8080")
