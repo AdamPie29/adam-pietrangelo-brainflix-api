@@ -3,6 +3,7 @@ const fs = require('fs');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 
+
 router.get("/videos", (request , response)=> {
     const videosJSONString = fs.readFileSync("./data/video-details.json");
     let videos = JSON.parse(videosJSONString);
@@ -31,8 +32,8 @@ router.get("/videos/:id", (request , response)=> {
 router.post("/videos", (request , response)=> {
     const video = request.body;
     video.id = uuidv4();
-    video.channel = "AP REGGAE TIME";
-    video.image = "http://localhost:8080/static/images/Upload-video-preview.jpg";
+    video.channel = "Adam's Fun Biking Times";
+    video.image = `http://localhost:${PORT}/static/images/Upload-video-preview.jpg`;
     video.views = 0;
     video.likes = 0;
     video.comments = [];
