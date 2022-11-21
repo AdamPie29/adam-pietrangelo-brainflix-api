@@ -23,7 +23,7 @@ router.get("/videos", (request , response)=> {
         return nextVideo;
     });
     response.send(filteredVideos);
-    response.status(error);
+    response.status(200);
 
 });
 
@@ -35,7 +35,7 @@ router.get("/videos/:id", (request , response)=> {
     const video = videos.find(video => video.id === id);
 
     response.json(video);
-    response.status(error);
+    response.status(200);
 })
 
 router.post("/videos", (request , response)=> {
