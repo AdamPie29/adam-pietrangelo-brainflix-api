@@ -3,6 +3,9 @@ const fs = require('fs');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 
+require('dotenv').config();
+const { PORT } = process.env;
+
 
 router.get("/videos", (request , response)=> {
     // Get existing contents of the video details file
@@ -20,6 +23,8 @@ router.get("/videos", (request , response)=> {
         return nextVideo;
     });
     response.send(filteredVideos);
+    response.status(error);
+
 });
 
 router.get("/videos/:id", (request , response)=> {
@@ -30,6 +35,7 @@ router.get("/videos/:id", (request , response)=> {
     const video = videos.find(video => video.id === id);
 
     response.json(video);
+    response.status(error);
 })
 
 router.post("/videos", (request , response)=> {
